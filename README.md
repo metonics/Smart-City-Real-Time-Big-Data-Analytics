@@ -33,17 +33,13 @@ Note
 Example Code Folder
   Contains example code used as building blocks to create the weather predictor
   
-Flask Folder
-  Contains all code for the front end web application.
-  ***BRIEF EXPLANATION OF CODE***
-  
 Weather Predictor Folder
   Contains all code for making weather predictions, the front end web application as well as tests and batch files to run the weather predictor.
   
   - BatchFiles Folder
       Contains BatchFiles used by the main batch files to run services, weather predictor and web app
   - Flask Folder
-      ***BRIEF EXPLANATION OF CODE***
+      ***#####BRIEF EXPLANATION OF CODE JULIAN#####***
   - Weather Data Producer
       Contains code to receive data from OpenWeatherMap API and produce this data to an Apache Kafka topic. Also contains unit tests to test it's ability to receive data from 
       the API and produce it to a topic.
@@ -51,7 +47,7 @@ Weather Predictor Folder
       Contains code to build Apache Storm Topology. The topology receives data from the Kafka topic and analyzes it in a Storm Bolt using pickle files generated using                 SvmClassifier.py to make predictions on fog and haze. These predictions are then stored in an Apache Cassandra database. 
   
 SvmClassifier.py
-  ***BRIEF EXPLANATION OF CODE***
+  ***#####BRIEF EXPLANATION OF CODE SHRUTHI#####***
     
 
     
