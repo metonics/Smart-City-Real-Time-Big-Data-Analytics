@@ -1,8 +1,8 @@
 # Smart-City-Real-time-Big-Data-Analytics
 
-Running weather predictor
+## Running weather predictor
 
-Prerequisites
+##### Prerequisites
 
 - Apache Zookeeper 3.4.6
 - Apache Kafka 0.9.0.1
@@ -11,29 +11,31 @@ Prerequisites
 - Python 2.7
 - JDK 8
 
-Python Packages
+##### Python Packages
   The file requirements.txt contains all required python packages. To install these packages use the command "pip install -r requirements.txt"
 
 
-Steps
+##### Steps
 
   1. Run batch file 'Run-Storm-Kafka-Cassandra.bat'
   2. Run batch file 'RunWeatherPredictor.bat'
   3. Run batch file 'StartWebApp.bat'
 
-  The webapp can be accessed at 110.173.132.3:5000
+  The webapp can be accessed at https://110.173.132.3:5000
   
-Note
+##### Note
   - If all apache services are already running it is only neccessary to run the batch file 'RunWeatherPredictor.bat'.
   - To stop all apache services, the most simple way is to restart the server.
   - Before rerunning the WeatherPredictor the Topology must be killed. This can be done by navigating to localhost:8080 in
     a web browser, clicking the topology named 'PredictionTopology' and clicking kill. Alternatively it can be killed by
     opening the command line and executing the command 'storm kill PredictionTopology'.
-    
-Example Code Folder
+
+## Contents of Repository
+
+##### Example Code Folder
   Contains example code used as building blocks to create the weather predictor
   
-Weather Predictor Folder
+##### Weather Predictor Folder
   Contains all code for making weather predictions, the front end web application as well as tests and batch files to run the weather predictor.
   
   - BatchFiles Folder
@@ -46,7 +48,7 @@ Weather Predictor Folder
   - Weather Prediction Topology
       Contains code to build Apache Storm Topology. The topology receives data from the Kafka topic and analyzes it in a Storm Bolt using pickle files generated using                 SvmClassifier.py to make predictions on fog and haze. These predictions are then stored in an Apache Cassandra database. 
   
-SvmClassifier.py
+##### SvmClassifier.py
   ***#####BRIEF EXPLANATION OF CODE SHRUTHI#####***
     
 
