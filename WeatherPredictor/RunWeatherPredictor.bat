@@ -1,3 +1,4 @@
+start /min cmd /c python c:/flask/app.py
 cd .\BatchFiles
 start /min cmd /c RunTopology.bat
 timeout 60
