@@ -80,7 +80,11 @@ def prediction_test():
 
                             getTime() {
                               const now = new Date();
+                              var utc_offset = now.getTimezoneOffset();
+                              now.setMinutes(now.getMinutes()+ utc_offset);
 
+                              var melbourne = 11*60;
+                              now.setMinutes(now.getMinutes() +melbourne);
                               return {
                                 hour: now.getHours() % 12 || 12,
                                 minute: now.getMinutes(),
@@ -171,7 +175,10 @@ def prediction_test():
       if(each.fog_prediction == 1.0):
         html = html.replace('hazevalue'+str(count), 'YES')
       if (count > 1):
-        html = html.replace('time'+str(count), str(each.timestamp).split(' ')[1][:5])
+        hrs = str(int(str(each.timestamp).split(' ')[1][0:2]) + 11)
+        mins = str(each.timestamp).split(' ')[1][3:5]
+        time = hrs + ':' + mins
+        html = html.replace('time'+str(count), time)
   
   return html
 

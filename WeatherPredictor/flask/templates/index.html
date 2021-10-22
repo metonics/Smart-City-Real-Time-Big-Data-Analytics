@@ -55,7 +55,11 @@
 
                             getTime() {
                               const now = new Date();
+							  var utc_offset = now.getTimezoneOffset();
+                              now.setMinutes(now.getMinutes()+ utc_offset);
 
+                              var melbourne = 11*60;
+                              now.setMinutes(now.getMinutes() +melbourne);
                               return {
                                 hour: now.getHours() % 12 || 12,
                                 minute: now.getMinutes(),
