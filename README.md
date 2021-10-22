@@ -50,6 +50,7 @@
       predictions and insert data into the cassandra database
   
 ##### SvmClassifier.py
+      Contains code to build a Support Vector Machine. This will take in positive and negative haze and fog historical data, to train the SVM.This code will produce pickle   files derived from the 3 csv files and will be supplied to Apache Storm to be able to help improve the accuracy and train the data to further on predict the fog and haze.
   ***#####BRIEF EXPLANATION OF CODE SHRUTHI#####***
     
 
