@@ -43,6 +43,7 @@
                                 this.update();
                               }, 500);
                             }
+			      //update time per second//
                             update() {
                               const parts = this.getTime();
                               const formatMin = parts.minute.toString().padStart(2, "0");
@@ -53,10 +54,14 @@
                               this.element.querySelector(".clockamorpm").textContent = amPm;
                             }
 
+			                                  //get real time//
+
                             getTime() {
                               const now = new Date();
 							  var utc_offset = now.getTimezoneOffset();
                               now.setMinutes(now.getMinutes()+ utc_offset);
+
+				                                //get Melboure time//
 
                               var melbourne = 11*60;
                               now.setMinutes(now.getMinutes() +melbourne);
