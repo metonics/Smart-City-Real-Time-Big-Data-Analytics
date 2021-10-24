@@ -1,0 +1,120 @@
+from sklearn import svm
+import csv
+import numpy as np
+import joblib
+import time
+start_time = time.time()
+
+def is_number(s):
+    try:
+        float(s) # for int, long and float
+    except ValueError:
+        return False
+
+    return True
+
+def svmTrain():
+    f = open("HazeTrain.csv")
+    csv_f = csv.reader(f)
+    tList=[]
+    tClass=[]
+    counter=0
+    for row in csv_f:
+        new_list=[]
+        if counter < 2:
+            counter=counter+1
+            continue
+        for item in row:
+            if not(is_number(item)):
+                continue
+            new_list.append(float(item))
+        print(new_list)
+        if len(new_list)!=5:
+            print("ERROR")
+            continue
+        tList.append(new_list)
+        tClass.append(1)
+    f.close()
+
+    f=open("NegativeTrain.csv")
+    csv_f=csv.reader(f)
+    counter=0
+    for row in csv_f:
+        new_list=[]
+        if counter < 2:
+            counter=counter+1
+            continue
+        for item in row:
+            if not(is_number(item)):
+                continue
+            new_list.append(float(item))
+        print(new_list)
+        if len(new_list)!=5:
+            print("ERROR")
+            continue
+        tList.append(new_list)
+        tClass.append(0)
+
+    f.close();   
+    f=open("FogTrain.csv")
+    csv_f= csv.reader(f)
+    tFogList=[]
+    tFogClass=[]
+    counter=0
+    
+    for row in csv_f:
+        new_list=[]
+        if counter < 2:
+            counter=counter+1
+            continue
+        for item in row:
+            if not(is_number(item)):
+                continue
+            new_list.append(float(item))
+        print(new_list)
+        if len(new_list)!=5:
+            exit(2)
+            continue
+            
+        tFogClass.append(1)
+        tFogList.append(new_list)
+        
+    f.close()
+    f=open("NegativeTrain.csv")
+    csv_f=csv.reader(f)
+    counter=0
+    for row in csv_f:
+        new_list=[]
+        if counter < 2:
+            counter=counter+1
+            continue
+        for item in row:
+            if not(is_number(item)):
+                continue
+            new_list.append(float(item))
+        print(new_list)
+        if len(new_list)!=5:
+            continue
+        tFogClass.append(0)
+        tFogList.append(new_list)
+        
+    svmFog = svm.SVC(C=1.0, cache_size=50000, gamma=5000, kernel='rbf', probability=True)
+    print("Fitting Fog...")
+    svmFog.fit(tFogList,tFogClass)
+	
+    print("dump...")
+    joblib.dump(svmFog, "svmFog.pkl")
+    
+    
+    svmHaze = svm.SVC(C=1.0, cache_size=50000, gamma=5000, kernel='rbf', probability=True)
+    print("Fitting Haze...")
+    svmHaze.fit(tList,tClass)
+    
+    print("dump...")
+    joblib.dump(svmHaze, "svmHaze.pkl")
+    
+    
+    print("--- %s seconds ---" % (time.time() - start_time))
+
+if __name__ == '__main__':
+    svmTrain()
